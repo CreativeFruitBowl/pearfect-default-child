@@ -29,25 +29,20 @@
 
 
 	<main id="main">
-		<div class="o-container">
-			<div class="o-container  o-container--optimise-readability">
-				<?php
+		<?php if (have_posts()) : ?>
+			<div class="o-container">
+				<div class="o-grid  o-grid--wide">
+					<?php while (have_posts()) : the_post(); ?>
+						<div class="o-grid__item  u-one-half  u-palm--one-whole">
+							<?php get_template_part('template-partials/listers/listers.article'); ?>
+						</div><!-- /.o-grid__item -->
+					<?php endwhile; ?>
+				</div><!-- /.o-grid -->
 
-					if (have_posts()) : 
-						while (have_posts()) : the_post();
-							the_content();
 
-						endwhile;
-
-					else :
-						echo '<h2>Sorry!</h2>';
-						echo '<p style-"text-align: center;">Looks like there\'s no content to be found here.</p>';
-
-					endif;
-
-				?>
+				<?php get_template_part('template-partials/generic/generic.pagination'); ?>
 			</div><!-- /.o-container -->
-		</div><!-- /.o-container -->
+		<?php endif; ?>
 	</main>
 
 
